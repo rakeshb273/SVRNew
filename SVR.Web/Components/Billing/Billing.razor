@@ -1,4 +1,4 @@
-﻿@page "/Bill"
+﻿@page "/Billing"
 
 @inherits BasePage
 @using SVR.Web.Components.Billing.Edit;
@@ -8,16 +8,5 @@
 
 <h3>Bill</h3>
 
-<BillingGrid></BillingGrid>
 
 <BillingEdit></BillingEdit>
-
-@*@if (!ViewMode.IsGridViewMode)
-{
-    <div class="edit-container-primary">
-        @if (Model != null)
-        {
-            <BillEdit></BillEdit>
-        }
-    </div>
-}*@

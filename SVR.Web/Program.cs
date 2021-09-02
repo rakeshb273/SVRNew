@@ -17,7 +17,7 @@ namespace SVR.Web
         {
             //   CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
-
+          
             CreateDbIfNotExists(host);
 
             host.Run();

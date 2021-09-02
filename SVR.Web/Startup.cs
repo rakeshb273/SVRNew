@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SVR.Data; 
+using SVR.Data;
+using Syncfusion.Blazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,9 @@ namespace SVR.Web
             // provides helpful error information in the dev environment
             //services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
-            services.AddServerSideBlazor(); 
+            services.AddServerSideBlazor();
+            services.AddSyncfusionBlazor();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDc2OTMyQDMxMzkyZTMyMmUzMEtkS3FmMEgrbG56b2IxVnpJT3NmbjdOMVMraWpSdmtodGhMeG01WlF1Zlk9");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

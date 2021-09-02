@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Billing\Grid\BillingGrid.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="19.2.0.48" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +26,18 @@
   <ItemGroup>
     <Folder Include="Components\SVR\" />
     <Folder Include="Styles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Billing\Grid\BillingGrid.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Billing\Grid\BillingGrid.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Billing\Grid\BillingGrid.razor" />
   </ItemGroup>
 
 </Project>

@@ -1,18 +1,14 @@
-﻿using System;
+﻿using SVR.Web.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SVR.Web.Common;
-using SVR.Web.Pages;
+using SVR.Data.Entitites;
 
-namespace SVR.Web.Components.Bill
+namespace SVR.Web.Components.Billing
 {
-    public partial class Bill : BasePage
+    public partial class Billing:BasePage
     {
-
-
-       
         public Bill Model { get; set; }
-
     }
 }

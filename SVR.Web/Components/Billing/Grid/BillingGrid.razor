@@ -1,20 +1,13 @@
-﻿@using SVR.Data.Entitites;
-<h3>BillsGrid</h3>
+﻿@page "/Bills"
+@using Syncfusion.Blazor.Grids
+@using SVR.Data.Entitites
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @*@foreach(Bill billing in Grid)
-            {
-               <tr>
-                   <td>@billing.ID</td>
-                   <td>@billing.Description</td>
-               </tr>
-            }*@
-    </tbody>
-</table>
+<SfGrid DataSource="@AllBills">
+    <GridColumns>
+        <GridColumn Field=@nameof(Bill.InvoiceNo) HeaderText=" Invoice No"></GridColumn>
+        <GridColumn Field=@nameof(Bill.Description) HeaderText="Description"></GridColumn>
+        <GridColumn Field=@nameof(Bill.BilledDate) HeaderText="Date"></GridColumn>
+        <GridColumn Field=@nameof(Bill.CreatedBy) HeaderText="CreatedBY"></GridColumn>
+    </GridColumns>
+</SfGrid>
+ 

@@ -166,7 +166,7 @@ namespace SVR.Core.Repository
                 return existing.ID;
             }
 
-            public async Task<IReadOnlyList<BillDto>> GetAll(CancellationToken cancellationToken)
+            public async Task<List<BillDto>> GetAll(CancellationToken cancellationToken)
             {
                 if (!cancellationToken.IsCancellationRequested)
                 {

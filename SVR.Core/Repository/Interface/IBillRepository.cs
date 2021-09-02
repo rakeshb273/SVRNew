@@ -15,7 +15,7 @@ namespace SVR.Core.Repository.Interface
     {
         Task<int> CreateOrUpdate(Bill_UM entity, CancellationToken cancellationToken);
 
-        Task<IReadOnlyList<BillDto>> GetAll(CancellationToken cancellationToken);
+        Task<List<BillDto>> GetAll(CancellationToken cancellationToken);
 
         Task<Bill_UM> GetById(int id, CancellationToken cancellationToken);
 
