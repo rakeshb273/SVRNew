@@ -5,11 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SVR.Data
 {
-  public class AppDataDbContext:DbContext
+  public partial class AppDataDbContext:DbContext
     {       
 
         public AppDataDbContext(DbContextOptions<AppDataDbContext> options) : base(options)
@@ -18,12 +19,24 @@ namespace SVR.Data
 
         
         public DbSet<Bill> Bills { get; set; }
+        public DbSet<BillItem> BillItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Address>  Addresses { get; set; }
+        public DbSet<State> States { get; set; }
+
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=svr;Persist Security Info=False;Trusted_Connection=True;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bill>().ToTable("Bills"); 
-            modelBuilder.Entity<Customer>().ToTable("Customers");
+
+            RemoveCascadeDelete(modelBuilder);
+            //modelBuilder.Entity<Bill>().ToTable("Bills"); 
+            //modelBuilder.Entity<Customer>().ToTable("Customers");
 
             //modelBuilder.Entity<Bill>(entity =>
             //{
@@ -32,7 +45,7 @@ namespace SVR.Data
             //    entity.HasIndex(e => e.BilledCustomer)
             //        .HasName("IX_Contact")
             //        .IsUnique();
-                
+
 
             //    entity.Property(e => e.CreatedBy).HasDefaultValueSql("((999))");
 
@@ -95,6 +108,70 @@ namespace SVR.Data
             //});
         }
 
-        
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+           
+            foreach (var entry in ChangeTracker.Entries<CommonEntity>())
+            {
+                var rowVersion = BitConverter.GetBytes(DateTime.UtcNow.Ticks);
+                var dt = DateTimeOffset.UtcNow;
+
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedOn = dt;
+                        entry.Entity.ModifiedOn = dt;
+                        entry.Entity.CreatedBy ="Admin";
+                        entry.Entity.ModifiedBy = "Admin";
+                        entry.Entity.isActive = true;
+                       // entry.Entity.RowVersion = rowVersion;
+
+                        //if (entry.Entity.Active && entry.Entity.Deleted)
+                        //{
+                        //    entry.Entity.Active = false;
+                        //}
+
+                        //if (entry.Entity.Active)
+                        //{
+                        //    entry.Entity.ActiveFromDate = dt;
+                        //}
+                        //else
+                        //{
+                        //    entry.Entity.InActiveFromDate = dt;
+                        //}
+                        break;
+
+                    //case EntityState.Modified:
+                    //    entry.Entity.RowVersion = rowVersion;
+
+                    //    if (entry.Entity.Active && entry.Entity.Deleted)
+                    //    {
+                    //        entry.Entity.Active = false;
+                    //    }
+
+                    //    if (!entry.Entity.Active)
+                    //    {
+                    //        entry.Entity.InActiveFromDate = dt;
+                    //    }
+
+                    //    break;
+                }
+            }
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<int> SaveSingleValueAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        private void RemoveCascadeDelete(ModelBuilder modelBuilder)
+        {
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.NoAction;
+            }
+        }
+
     }
 }

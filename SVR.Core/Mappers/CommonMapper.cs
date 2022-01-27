@@ -14,10 +14,10 @@ namespace SVR.Core.Mappers
     {
         public CommonMapper()
         {
-            CreateMap<Bill, BillDto>();
-            //.ForMember(x => x.TotalTypes, opt => opt.MapFrom(d => d.DocumentTypes.Count(x => x.Active)));
-            CreateMap<Bill_UM, Bill>().ReverseMap();
-            //.ForMember(x => x.DocumentCategory, opt => opt.Ignore()).ReverseMap();
+            //CreateMap<Bill, BillDto>();
+            ////.ForMember(x => x.TotalTypes, opt => opt.MapFrom(d => d.DocumentTypes.Count(x => x.Active)));
+            //CreateMap<BillUpdateModel, Bill>().ReverseMap();
+            ////.ForMember(x => x.DocumentCategory, opt => opt.Ignore()).ReverseMap();
         }
     }
 }

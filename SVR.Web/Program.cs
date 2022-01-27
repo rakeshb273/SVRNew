@@ -16,8 +16,7 @@ namespace SVR.Web
         public static void Main(string[] args)
         {
             //   CreateHostBuilder(args).Build().Run();
-            var host = CreateHostBuilder(args).Build();
-          
+            var host = CreateHostBuilder(args).Build(); 
             CreateDbIfNotExists(host);
 
             host.Run();
@@ -30,7 +29,8 @@ namespace SVR.Web
                 try
                 {
                     var context = services.GetRequiredService<AppDataDbContext>();
-                    
+                    //
+
                 }
                 catch (Exception ex)
                 {

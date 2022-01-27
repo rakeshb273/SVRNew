@@ -6,12 +6,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SVR.Core.Repository;
+using SVR.Core.Repository.Interface;
+using SVR.Core.Services;
+using SVR.Core.Services.Interface;
 using SVR.Data;
 using Syncfusion.Blazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using SVR.Web.Adaptors;
 
 namespace SVR.Web
 {
@@ -36,7 +42,13 @@ namespace SVR.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSyncfusionBlazor();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDc2OTMyQDMxMzkyZTMyMmUzMEtkS3FmMEgrbG56b2IxVnpJT3NmbjdOMVMraWpSdmtodGhMeG01WlF1Zlk9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTMzNDYwQDMxMzkyZTMzMmUzME5aNE55aGJmTy9vK0l1MTRWUmNieEI4L01DOEQ0QTJKRi9URnhlMGd2MVU9; NTMzNDYxQDMxMzkyZTMzMmUzMG44SUdhR0NEeTcxN3d6OXYrNjZzZCt3c2EyQmdIQ2g0QzZpYXRMekdsR1U9");
+
+            services.AddScoped<SampleAdaptor>();
+            services.AddApplicationLayer();
+            services.AddPersistence(Configuration);
+            //services.AddTransient<IBillRepository, BillRepository>();
+            //services.AddTransient<IBillService, BillService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,6 +13,8 @@ namespace SVR.Data.Entitites
         public virtual int HSNCode { get; set; }
         public virtual int Quantity { get; set; }
         public virtual int Price { get; set; }
+
+        public virtual Bill Bill { get; set; }
         public virtual int Amount
         {
             get
@@ -21,5 +23,7 @@ namespace SVR.Data.Entitites
 
             }
         }
+
+
     }
 }

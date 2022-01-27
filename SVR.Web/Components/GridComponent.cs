@@ -1,5 +1,8 @@
-﻿using SVR.Shared.Parameters;
+﻿using DevExtreme.AspNet.Data.ResponseModel;
+using SVR.Shared.Parameters;
 using SVR.Web.Common;
+using Syncfusion.Blazor;
+using Syncfusion.Blazor.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +24,7 @@ namespace SVR.Web.Components
         //    };
         //}
 
-        protected async Task<FilterParameter> ConfigureParametersAsync(DataSourceLoadOptionsBase options, int pageSize, List<object> defaultOptions = null )
+        protected async Task<FilterParameter> ConfigureParameters(DataSourceLoadOptionsBase options, int pageSize, List<object> defaultOptions = null )
         {
             if (options.Filter == null)
             {
@@ -30,6 +33,18 @@ namespace SVR.Web.Components
 
             FilterParameter = await GetParametersAsync(options, PageIndex, pageSize).ConfigureAwait(false);
  
+            return FilterParameter;
+        }
+
+        protected async Task<FilterParameter> ConfigureSyncParameters(DataManagerRequest options, int pageSize, List<object> defaultOptions = null)
+        {
+            //if (options.Filter == null)
+            //{
+            //    options.Filter = defaultOptions;
+            //}
+
+            FilterParameter = await GetSyncParameters(options, PageIndex, pageSize).ConfigureAwait(false);
+
             return FilterParameter;
         }
 
@@ -59,5 +74,25 @@ namespace SVR.Web.Components
         protected int PageIndex { get; set; }
 
         protected int RecordCount { get; set; }
+
+        protected LoadResult EmptyResult()
+        {
+            return new LoadResult()
+            {
+                data = null,
+                totalCount = 0
+            };
+        }
+
+
+        protected DataResult EmptyDataResult()
+        {
+            return new DataResult()
+            {
+                Result = null,
+                Count = 0
+            };
+        }
+
     }
 }

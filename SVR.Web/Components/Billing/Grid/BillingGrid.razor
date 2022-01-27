@@ -1,6 +1,7 @@
 ﻿@page "/Bills"
 @using Syncfusion.Blazor.Grids
 @using SVR.Data.Entitites
+@inherits GridComponent
 
 <SfGrid DataSource="@AllBills">
     <GridColumns>
@@ -10,4 +11,4 @@
         <GridColumn Field=@nameof(Bill.CreatedBy) HeaderText="CreatedBY"></GridColumn>
     </GridColumns>
 </SfGrid>
- 
+

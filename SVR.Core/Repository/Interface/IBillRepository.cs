@@ -1,4 +1,5 @@
 ﻿using SVR.Core.Models;
+using SVR.Core.RelatedData;
 using SVR.Core.UpdateModels;
 using SVR.Data.Entitites;
 using SVR.Shared.Parameters;
@@ -13,18 +14,20 @@ namespace SVR.Core.Repository.Interface
 {
     public interface IBillRepository : IGenericRepository<Bill>
     {
-        Task<int> CreateOrUpdate(Bill_UM entity, CancellationToken cancellationToken);
+        Task<BillRelatedDto> GetRelatedData(CancellationToken cancellationToken);
+        Task<int> CreateOrUpdate(BillUpdateModel entity, CancellationToken cancellationToken);
 
         Task<List<BillDto>> GetAll(CancellationToken cancellationToken);
 
-        Task<Bill_UM> GetById(int id, CancellationToken cancellationToken);
+        Task<BillUpdateModel> GetById(int id, CancellationToken cancellationToken);
 
         Task<IReadOnlyList<BillDto>> GetPagedCollection(
             FilterParameter parameter,
             CancellationToken cancellationToken);
 
         Task<int> GetTotalRecords(FilterParameter parameter, CancellationToken cancellationToken);
- 
+
+        Task<IEnumerable<BillDto>> GetSyncAll(int skip, int take );
 
        // Task<int> GetTotalDocumentRecordsAsync(FilterParameter parameter, CancellationToken cancellationToken);
     }

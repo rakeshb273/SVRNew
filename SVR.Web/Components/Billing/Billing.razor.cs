@@ -10,5 +10,6 @@ namespace SVR.Web.Components.Billing
     public partial class Billing:BasePage
     {
         public Bill Model { get; set; }
+        public bool isGrid { get; set; }
     }
 }

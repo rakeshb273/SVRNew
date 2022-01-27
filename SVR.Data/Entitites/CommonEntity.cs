@@ -13,6 +13,7 @@ namespace SVR.Data.Entitites
         public DateTimeOffset CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTimeOffset ModifiedOn { get; set; }
-        
+        public virtual bool isActive { get; set; }
+
     }
 }

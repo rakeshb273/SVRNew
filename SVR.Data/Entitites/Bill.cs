@@ -18,7 +18,7 @@ namespace SVR.Data.Entitites
         public virtual int ID { get; set; }
         public virtual string Description { get; set; }
         public virtual string InvoiceNo { get; set; }
-        //public virtual Customer BilledCustomer { get; set; }
+        public virtual Customer BilledCustomer { get; set; }
         //public virtual Customer ShippedCustomer { get; set; }
         public virtual DateTime BilledDate { get; set; }
     }

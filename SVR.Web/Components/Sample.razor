@@ -1,0 +1,31 @@
+﻿@page "/sample"
+<h3>Sample</h3>
+@using SVR.Core.Models;
+@using SVR.Web.Adaptors
+@inherits GridComponent
+
+
+
+<SfGrid TValue="BillDto" AllowPaging="true" AllowSorting="true">
+    <SfDataManager Adaptor="Adaptors.CustomAdaptor" AdaptorInstance="typeof(SampleAdaptor)" ></SfDataManager>
+    <GridPageSettings PageSize="15" PageCount="5" PageSizes=@AllowedPageSizes></GridPageSettings>
+    <GridSortSettings AllowUnsort="false"></GridSortSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(BillDto.id) HeaderText="Bill ID">         </GridColumn>
+        <GridColumn Field=@nameof(BillDto.CustomerName) HeaderText="Name">         </GridColumn>
+        <GridColumn Field=@nameof(BillDto.InvoiceNo) HeaderText="InvoiceNo">         </GridColumn>
+        <GridColumn Field=@nameof(BillDto.BilledDate) HeaderText="Date" AllowSorting="false">         </GridColumn>
+    </GridColumns>
+
+</SfGrid>
+
+@*<DxDataGrid @ref="Grid" T="@CountryDto" CustomData="@LoadAsync" PageSize="15" PageIndexChanged="@OnPageIndexChanged"
+            PageCount="@PageCount" PageIndex="@PageIndex" ShowFilterRow="@ShowFilterRow" CssClass="dx-table-allocation-group-grid dx-table dx-table-selectable"
+            HorizontalScrollBarMode="@ScrollBarMode.Auto"
+            ColumnResizeMode="@ColumnResizeMode"
+            PagerPageSizeSelectorVisible="@true"
+            PagerAllowedPageSizes=@AllowedPageSizes
+            RowClick="@OnRowClick"
+            PagerNavigationMode="@PagerNavigationMode.NumericButtons"
+            HtmlRowDecoration="@OnHtmlRowDecoration"
+            HtmlDataCellDecoration="@OnHtmlDataCellDecoration">*@

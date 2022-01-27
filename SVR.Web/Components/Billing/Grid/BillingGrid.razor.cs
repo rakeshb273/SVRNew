@@ -16,6 +16,12 @@ namespace SVR.Web.Components.Billing.Grid
 
         public List<BillDto> AllBills { get; set; }
 
+        protected override async Task OnInitializedAsync()
+        {
+
+            await base.OnInitializedAsync();
+        }
+
         //protected override async Task OnInitializedAsync() => AllBills = await Repo.GetAll(default);
 
         //protected override async Task OnInitializedAsync()
